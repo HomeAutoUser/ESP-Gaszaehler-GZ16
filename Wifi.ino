@@ -106,12 +106,16 @@ bool testWifi(void) {
     if (WiFi.status() == WL_CONNECTED) {
       ConnectWifi = true;
       ulReconncount += 1;                                 // Counter Reconnects erhöhen
-      String logtext = "Wifi connected to: ";
+      String logtext = "Wifi connected to ";
       logtext += WiFi.SSID();
+      logtext += ", channel ";
+      logtext += WiFi.channel();
       Serial.println(F(""));
       Serial.println(logtext);
       appendLogFile(logtext);
-      Serial.print("Local IP: ");
+      Serial.print(F("Channel: "));
+      Serial.println(WiFi.channel());
+      Serial.print(F("Local IP: "));
       Serial.println(WiFi.localIP());
       digitalWrite(LED_green, LOW);                       // LED ein
       return true;
